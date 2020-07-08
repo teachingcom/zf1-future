@@ -41,7 +41,6 @@ require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
  * @method $this prependHttpEquiv($keyValue, $content, $conditionalHttpEquiv)
  * @method $this prependName($keyValue, $content, $conditionalName)
  * @method $this prependProperty($property, $content, $modifiers)
- * @method $this setCharset($charset)
  * @method $this setHttpEquiv($keyValue, $content, $modifiers)
  * @method $this setName($keyValue, $content, $modifiers)
  * @method $this setProperty($property, $content, $modifiers)
@@ -222,8 +221,8 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
             return false;
         }
 
-        // <meta property= ... /> is only supported with doctype RDFa
-        if ( !is_null($this->view) && !$this->view->doctype()->isRdfa()
+        // <meta property= ... /> is only supported with doctype RDFa and html5
+        if ( !is_null($this->view) && !$this->view->doctype()->isRdfa() && !$isHtml5
             && $item->type === 'property') {
             return false;
         }
